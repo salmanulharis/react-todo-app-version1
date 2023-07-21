@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# React To Do App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br>
 
-## Available Scripts
+Create react app using the following command
 
-In the project directory, you can run:
+    npx create-react-app .
 
-### `npm start`
+Install package `uuid` to create unique id's
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    npm i uuid
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Using fontoawesome for icons
 
-### `npm test`
+    npm i --save @fortawesome/fontawesome-svg-core
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Free icons styles
 
-### `npm run build`
+    npm i --save @fortawesome/free-solid-svg-icons
+    npm i --save @fortawesome/free-regular-svg-icons
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Code and it break down
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    setTodos(todos.map(todo => todo.id === id ? {...todo, completed: !todo.completed} : todo));
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The code you provided is a JavaScript expression that updates an array of todo items based on the given `id`. Let's break it down step by step:
 
-### `npm run eject`
+1. `todos.map(todo => ...)` starts by iterating over each element in the `todos` array using the `map` function. It creates a new array where each element is transformed based on the provided callback function.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. `todo.id === id ? {...todo, completed: !todo.completed} : todo` is the callback function used in the `map` operation. It checks if the `id` of the current `todo` object matches the given `id`. If they match, it creates a new object using the spread syntax (`{...todo}`) to copy all the properties of the original `todo` object. It then sets the `completed` property to the opposite of its current value by using the `!` (logical NOT) operator. If the `id` doesn't match, it returns the original `todo` object unchanged.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Finally, the outermost part of the expression `setTodos(...)` sets the updated array of todos as the new value of the `todos` state variable. The exact implementation of `setTodos` depends on the context in which this code is used, but typically it refers to a state update function provided by a state management library like React's `useState` hook.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+In summary, the code updates the `completed` property of a todo item in an array by toggling its value based on the `id` provided.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<br>
 
-## Learn More
+    setTodos(todos.filter(todo => todo.id !== id));
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The code you provided is a JavaScript expression that removes a todo item from an array based on the given `id`. Let's break it down step by step:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. `todos.filter(todo => ...)` starts by iterating over each element in the `todos` array using the `filter` function. It creates a new array that only includes elements for which the provided callback function returns `true`.
 
-### Code Splitting
+2. `todo.id !== id` is the callback function used in the `filter` operation. It checks if the `id` of the current `todo` object does not match the given `id`. If the `id` does not match, it returns `true`, indicating that the current `todo` object should be included in the filtered array. If the `id` does match, it returns `false`, indicating that the current `todo` object should be excluded from the filtered array.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+3. Finally, the outermost part of the expression `setTodos(...)` sets the filtered array of todos as the new value of the `todos` state variable. The exact implementation of `setTodos` depends on the context in which this code is used, but typically it refers to a state update function provided by a state management library like React's `useState` hook.
 
-### Analyzing the Bundle Size
+In summary, the code removes a todo item from an array by filtering out the object that has an `id` matching the given `id`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<br>
